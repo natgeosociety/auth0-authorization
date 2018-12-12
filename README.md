@@ -23,9 +23,7 @@ const authorization = new AuthorizationClient({
 });
 ```
 
-Behind the scenes the client obtains and caches an access token.
-
-> TODO: automatically refresh access token once it expires.
+Behind the scenes the client obtains and access token, caches it, and automatically refreshes it if it expires.
 
 Each method returns a promise.
 
