@@ -1,4 +1,5 @@
 import fetch from 'node-fetch';
+import { HttpError } from './http-error';
 
 export interface IGetAccessTokenOptions {
   audience: string;
@@ -34,7 +35,7 @@ export async function getAccessToken(options: IGetAccessTokenOptions): Promise<s
     },
   });
   if (!response.ok) {
-    throw new Error(`${response.status} ${response.statusText}: ${JSON.stringify(await response.json())}`);
+    throw new HttpError(response.status, await response.json());
   }
   const responseBody: IAuth0TokenResponse = await response.json();
   return responseBody.access_token;
