@@ -9,7 +9,7 @@ export interface Response {
   total: number;
 }
 
-interface Options {
+export interface Options {
   page: number;
   perPage: number;
 }

@@ -5,7 +5,7 @@ export interface Input {
   userId: string;
 }
 
-interface Options {
+export interface Options {
   includeNestedGroups: boolean;
 }
 

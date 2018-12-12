@@ -6,10 +6,10 @@ import { getGroup, Input as IGetGroupInput } from './groups/get-group';
 import { createGroup, Input as ICreateGroupInput } from './groups/create-group';
 import { deleteGroup, Input as IDeleteGroupInput } from './groups/delete-group';
 import { updateGroup, Input as IUpdateGroupInput } from './groups/update-group';
-import { getGroupMembers, Input as IGetGroupMembersInput } from './groups/get-group-members';
+import { getGroupMembers, Input as IGetGroupMembersInput, Options as IGetGroupMembersOptions } from './groups/get-group-members';
 import { addGroupMembers, Input as IAddGroupMembersInput } from './groups/add-group-members';
 import { deleteGroupMembers, Input as IDeleteGroupMembersInput } from './groups/delete-group-members';
-import { getNestedGroupMembers, Input as IGetNestedGroupMembersInput } from './groups/get-nested-group-members';
+import { getNestedGroupMembers, Input as IGetNestedGroupMembersInput, Options as IGetNestedGroupMembersOptions } from './groups/get-nested-group-members';
 import { getNestedGroups, Input as IGetNestedGroupsInput } from './groups/get-nested-groups';
 import { addNestedGroups, Input as IAddNestedGroupsInput } from './groups/add-nested-groups';
 import { deleteNestedGroups, Input as IDeleteNestedGroupsInput } from './groups/delete-nested-groups';
@@ -30,9 +30,9 @@ import { createPermission, Input as ICreatePermissionInput } from './permissions
 import { updatePermission, Input as IUpdatePermissionInput } from './permissions/update-permission';
 import { deletePermission, Input as IDeletePermissionInput } from './permissions/delete-permission';
 // Users
-import { getUsers } from './users/get-users';
+import { getUsers, Options as IGetUsersOptions } from './users/get-users';
 import { getUser, Input as IGetUserInput } from './users/get-user';
-import { getUserGroups, Input as IGetUserGroupsInput } from './users/get-user-groups';
+import { getUserGroups, Input as IGetUserGroupsInput, Options as IGetUserGroupsOptions } from './users/get-user-groups';
 import { addUserToGroups, Input as IAddUserToGroupsInput } from './users/add-user-to-groups';
 import { calculateGroupMemberships, Input as ICalculateGroupMembershipsInput } from './users/calculate-group-memberships';
 import { getUserRoles, Input as IGetUserRolesInput } from './users/get-user-roles';
@@ -72,8 +72,8 @@ export class AuthorizationClient {
     return updateGroup(this._options.extensionUrl, await this._getAccessToken())(input);
   }
 
-  public async getGroupMembers(input: IGetGroupMembersInput) {
-    return getGroupMembers(this._options.extensionUrl, await this._getAccessToken())(input);
+  public async getGroupMembers(input: IGetGroupMembersInput, options: IGetGroupMembersOptions) {
+    return getGroupMembers(this._options.extensionUrl, await this._getAccessToken())(input, options);
   }
 
   public async addGroupMembers(input: IAddGroupMembersInput) {
@@ -84,8 +84,8 @@ export class AuthorizationClient {
     return deleteGroupMembers(this._options.extensionUrl, await this._getAccessToken())(input);
   }
 
-  public async getNestedGroupMembers(input: IGetNestedGroupMembersInput) {
-    return getNestedGroupMembers(this._options.extensionUrl, await this._getAccessToken())(input);
+  public async getNestedGroupMembers(input: IGetNestedGroupMembersInput, options: IGetNestedGroupMembersOptions) {
+    return getNestedGroupMembers(this._options.extensionUrl, await this._getAccessToken())(input, options);
   }
 
   public async getNestedGroups(input: IGetNestedGroupsInput) {
@@ -162,16 +162,16 @@ export class AuthorizationClient {
 
   // Users
 
-  public async getUsers() {
-    return getUsers(this._options.extensionUrl, await this._getAccessToken())();
+  public async getUsers(options: IGetUsersOptions) {
+    return getUsers(this._options.extensionUrl, await this._getAccessToken())(options);
   }
 
   public async getUser(input: IGetUserInput) {
     return getUser(this._options.extensionUrl, await this._getAccessToken())(input);
   }
 
-  public async getUserGroups(input: IGetUserGroupsInput) {
-    return getUserGroups(this._options.extensionUrl, await this._getAccessToken())(input);
+  public async getUserGroups(input: IGetUserGroupsInput, options: IGetUserGroupsOptions) {
+    return getUserGroups(this._options.extensionUrl, await this._getAccessToken())(input, options);
   }
 
   public async addUserToGroups(input: IAddUserToGroupsInput) {
