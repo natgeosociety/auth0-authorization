@@ -5,7 +5,9 @@
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "dependencies": {
+    "@types/jsonwebtoken": "8.3.0",
     "@types/node-fetch": "2.1.4",
+    "jsonwebtoken": "8.4.0",
     "node-fetch": "2.3.0"
   },
   "devDependencies": {

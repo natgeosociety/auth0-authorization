@@ -1,3 +1,4 @@
+import { decode } from 'jsonwebtoken';
 import { getAccessToken } from './common/get-access-token';
 
 // Groups
@@ -198,16 +199,29 @@ export class AuthorizationClient {
     return calculateRoles(this._options.extensionUrl, await this._getAccessToken())(input);
   }
 
+  // Return cached access token unless it does not exist or is expired.
   private async _getAccessToken(): Promise<string> {
-    if (this._accessToken) {
-      return this._accessToken;
+    const _getAccessToken = async () => {
+      return await getAccessToken({
+        audience: 'urn:auth0-authz-api',
+        clientId: this._options.clientId,
+        clientSecret: this._options.clientSecret,
+        domain: this._options.domain,
+      });
+    };
+    // Get new access token if it does not exist
+    if (!this._accessToken) {
+      return _getAccessToken();
     }
-    return await getAccessToken({
-      audience: 'urn:auth0-authz-api',
-      clientId: this._options.clientId,
-      clientSecret: this._options.clientSecret,
-      domain: this._options.domain,
-    });
+    // Get new access token if it is expired
+    const tokenPayload = decode(this._accessToken) as {[key: string]: string };
+    const expirationSeconds = parseInt(tokenPayload.exp);
+    const nowSeconds = Date.now().valueOf() / 1000;
+    if (nowSeconds < expirationSeconds) {
+      return _getAccessToken();
+    }
+    // Use cached access token
+    return this._accessToken;
   }
 }
 
