@@ -1,6 +1,8 @@
 {
   "name": "auth0-authorization",
   "version": "0.0.0",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
   "dependencies": {
     "@types/node-fetch": "2.1.4",
     "node-fetch": "2.3.0"
