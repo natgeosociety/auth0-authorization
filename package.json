@@ -2,9 +2,11 @@
   "name": "auth0-authorization",
   "version": "0.0.0",
   "dependencies": {
+    "@types/node-fetch": "2.1.4",
     "node-fetch": "2.3.0"
   },
   "devDependencies": {
+    "ts-node": "7.0.1",
     "typescript": "3.2.2"
   },
   "scripts": {
