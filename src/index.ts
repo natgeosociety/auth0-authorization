@@ -1,7 +1,2 @@
-import { AuthorizationClient } from './authorization-client';
-
-export {
-  AuthorizationClient
-}
-
+export { AuthorizationClient } from './authorization-client';
 export * from './interfaces';
