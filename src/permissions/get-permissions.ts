@@ -1,7 +1,7 @@
 import { get } from '../common/request';
 import { IAuth0AuthorizationApiPermission } from '../interfaces';
 
-interface Response {
+export interface Response {
   permissions: IAuth0AuthorizationApiPermission[];
   total: number;
 }

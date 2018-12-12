@@ -5,7 +5,7 @@ export interface Input {
   groupId: string;
 }
 
-interface Response {
+export interface Response {
   users: IAuth0AuthorizationApiUser[];
   total: number;
 }

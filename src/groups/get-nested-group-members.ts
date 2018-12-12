@@ -5,7 +5,7 @@ export interface Input {
   groupId: string;
 }
 
-interface Response {
+export interface Response {
   nested: {
     user: IAuth0AuthorizationApiUser;
     group: IAuth0AuthorizationApiGroup;

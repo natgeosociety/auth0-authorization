@@ -1,7 +1,7 @@
 import { get } from '../common/request';
 import { IAuth0AuthorizationApiUser } from '../interfaces';
 
-interface Response {
+export interface Response {
   start: number;
   limit: number;
   length: number;

@@ -1,7 +1,7 @@
 import { get } from '../common/request';
 import { IAuth0AuthorizationApiGroup } from '../interfaces';
 
-interface Response {
+export interface Response {
   groups: IAuth0AuthorizationApiGroup[];
   total: number;
 }

@@ -1,7 +1,7 @@
 import { get } from '../common/request';
 import { IAuth0AuthorizationApiRole } from '../interfaces';
 
-interface Response {
+export interface Response {
   roles: IAuth0AuthorizationApiRole[];
   total: number;
 }
