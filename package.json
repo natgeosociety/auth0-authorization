@@ -18,5 +18,9 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/CyrusBiotechnology/auth0-authorization"
-  }
+  },
+  "keywords": [
+    "auth0",
+    "authorization"
+  ]
 }

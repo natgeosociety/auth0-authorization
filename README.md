@@ -17,7 +17,7 @@ EXTENSION_URL=https://my-tenant.us.webtask.io/xxx/api
 EOF
 ```
 
-### 2. Run test script
+### 2. Run test scripts
 
 ```bash
 env $(cat .env | xargs) node_modules/.bin/ts-node src/common/get-access-token.spec.ts
