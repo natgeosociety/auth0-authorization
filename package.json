@@ -1,6 +1,7 @@
 {
   "name": "@cyrusbio/auth0-authorization",
   "version": "1.0.3",
+  "description": "Auth0 Authorization Extension API client library",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "dependencies": {

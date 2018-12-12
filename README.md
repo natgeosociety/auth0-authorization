@@ -1,12 +1,10 @@
-# Install dependencies
+# auth0-authorization
 
-```bash
-npm i
-```
+Auth0 Authorization Extension API client library
 
-# Run a test script
+## Development
 
-## 1. Set up Auth0 parameters
+### 1. Set up Auth0 parameters
 
 Scripts read Auth0 parameters from environment variables.
 
@@ -19,7 +17,7 @@ EXTENSION_URL=https://my-tenant.us.webtask.io/xxx/api
 EOF
 ```
 
-## 2. Run script
+### 2. Run test script
 
 ```bash
 env $(cat .env | xargs) node_modules/.bin/ts-node src/common/get-access-token.spec.ts
