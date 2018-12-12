@@ -72,7 +72,7 @@ export class AuthorizationClient {
     return updateGroup(this._options.extensionUrl, await this._getAccessToken())(input);
   }
 
-  public async getGroupMembers(input: IGetGroupMembersInput, options: IGetGroupMembersOptions) {
+  public async getGroupMembers(input: IGetGroupMembersInput, options?: IGetGroupMembersOptions) {
     return getGroupMembers(this._options.extensionUrl, await this._getAccessToken())(input, options);
   }
 
@@ -84,7 +84,7 @@ export class AuthorizationClient {
     return deleteGroupMembers(this._options.extensionUrl, await this._getAccessToken())(input);
   }
 
-  public async getNestedGroupMembers(input: IGetNestedGroupMembersInput, options: IGetNestedGroupMembersOptions) {
+  public async getNestedGroupMembers(input: IGetNestedGroupMembersInput, options?: IGetNestedGroupMembersOptions) {
     return getNestedGroupMembers(this._options.extensionUrl, await this._getAccessToken())(input, options);
   }
 
@@ -162,7 +162,7 @@ export class AuthorizationClient {
 
   // Users
 
-  public async getUsers(options: IGetUsersOptions) {
+  public async getUsers(options?: IGetUsersOptions) {
     return getUsers(this._options.extensionUrl, await this._getAccessToken())(options);
   }
 
@@ -170,7 +170,7 @@ export class AuthorizationClient {
     return getUser(this._options.extensionUrl, await this._getAccessToken())(input);
   }
 
-  public async getUserGroups(input: IGetUserGroupsInput, options: IGetUserGroupsOptions) {
+  public async getUserGroups(input: IGetUserGroupsInput, options?: IGetUserGroupsOptions) {
     return getUserGroups(this._options.extensionUrl, await this._getAccessToken())(input, options);
   }
 
