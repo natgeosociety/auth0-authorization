@@ -23,7 +23,7 @@ const authorization = new AuthorizationClient({
 });
 ```
 
-Behind the scenes the client obtains and access token, caches it, and automatically refreshes it if it expires.
+Behind the scenes the client obtains an access token, caches it, and automatically refreshes it if it expires.
 
 Each method returns a promise.
 
