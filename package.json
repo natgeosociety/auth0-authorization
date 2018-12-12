@@ -1,5 +1,5 @@
 {
-  "name": "auth0-authorization",
+  "name": "@cyrusbio/auth0-authorization",
   "version": "1.0.0",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
