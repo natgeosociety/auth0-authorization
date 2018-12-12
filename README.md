@@ -1,6 +1,45 @@
 # auth0-authorization
 
-Auth0 Authorization Extension API client library
+Auth0 Authorization Extension API client library with TypeScript types
+
+## Installation
+
+```bash
+  npm install @cyrusbio/auth0-authorization
+```
+
+## AuthorizationClient
+
+Use this client to access the [Auth0 Authorization Extension API](https://auth0.com/docs/api/authorization-extension).
+
+```ts
+import { AuthorizationClient } from '@cyrusbio/auth0-authorization';
+
+const authorization = new AuthorizationClient({
+  clientId: `${CLIENT_ID}`,
+  clientSecret: `${CLIENT_SECRET}`,
+  domain: `${TENANT}.auth0.com`,
+  extensionUrl: `https://${TENANT}.us.webtask.io/xxx/api`,
+});
+```
+
+Behind the scenes the client obtains and caches an access token.
+
+> TODO: automatically refresh access token once it expires.
+
+Each method returns a promise.
+
+```ts
+const groups = await authorization.getGroups();
+```
+
+## Types
+
+```ts
+import { IAuth0AuthorizationApiGroup } from '@cyrusbio/auth0-authorization';
+
+let group: IAuth0AuthorizationApiGroup;
+```
 
 ## Development
 
