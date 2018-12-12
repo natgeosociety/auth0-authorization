@@ -10,4 +10,5 @@ interface IAuthorizationClientOptions {
   clientId: string;
   clientSecret: string;
   domain: string;
+  extensionUrl: string;
 }
