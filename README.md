@@ -1,6 +1,6 @@
 # auth0-authorization
 
-Auth0 Authorization Extension API client library with TypeScript types
+Auth0 Authorization Extension API client library
 
 ## Installation
 
@@ -32,6 +32,8 @@ const groups = await authorization.getGroups();
 ```
 
 ## Types
+
+[TypeScript](https://www.typescriptlang.org) types are included.
 
 ```ts
 import { IAuth0AuthorizationApiGroup } from '@cyrusbio/auth0-authorization';
