@@ -15,6 +15,9 @@
     "typescript": "3.2.2"
   },
   "scripts": {
+    "pretestbuild": "rm -rf test",
+    "testbuild": "tsc -p tsconfig.test.json --outDir test",
+    "testbuild:watch": "tsc -p tsconfig.test.json --outDir test -w",
     "prepublish": "rm -rf lib; tsc --rootDir src --outDir lib --declaration"
   },
   "repository": {
