@@ -1,5 +1,5 @@
 import fetch from 'node-fetch';
-import { buildQueryString } from './build-query-string';
+import * as url from 'url';
 import { HttpError } from './http-error';
 
 export interface IGetOptions {
@@ -35,8 +35,10 @@ export interface IDeleteOptions<T> {
 }
 
 export async function get<ResponseBody>(request: IGetOptions): Promise<ResponseBody> {
-  const queryString = buildQueryString(request.queryParams);
-  const response = await fetch(`${request.url}?${queryString}`, {
+  const urlObject = new url.URL(request.url);
+  urlObject.search = new url.URLSearchParams(request.queryParams).toString();
+  const urlString = urlObject.toString();
+  const response = await fetch(urlString, {
     method: 'GET',
     headers: {
       'Authorization': `Bearer ${request.accessToken}`
