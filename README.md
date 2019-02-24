@@ -41,23 +41,31 @@ import { IAuth0AuthorizationApiGroup } from '@cyrusbio/auth0-authorization';
 let group: IAuth0AuthorizationApiGroup;
 ```
 
-## Development
 
-### 1. Set up Auth0 parameters
 
-Scripts read Auth0 parameters from environment variables.
+## Tests
+
+### Run tests with mocks
+
+```bash
+npm test
+```
+
+### Run tests without mocks
+
+First, set up Auth0 parameters
 
 ```bash
 cat <<'EOF' > .env
-DOMAIN=my-tenant.auth0.com
-CLIENT_ID=xxx
-CLIENT_SECRET=xxx
-EXTENSION_URL=https://my-tenant.us.webtask.io/xxx/api
+SKIP_MOCKS=true
+AUTH0_AUDIENCE=xxx
+AUTH0_CLIENT_ID=xxx
+AUTH0_CLIENT_SECRET=xxx
+AUTH0_DOMAIN=my-tenant.auth0.com
+AUTH0_EXTENSION_URL=https://my-tenant.us.webtask.io/xxx/api
 EOF
 ```
 
-### 2. Run test scripts
-
 ```bash
-env $(cat .env | xargs) node_modules/.bin/ts-node src/common/get-access-token.spec.ts
+env $(cat .env | xargs) npm test
 ```
