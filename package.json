@@ -20,6 +20,9 @@
     "typescript": "3.2.2"
   },
   "scripts": {
+    "prebuild": "rm -rf lib",
+    "build": "tsc -p tsconfig.build.json --outDir lib",
+    "build:watch": "tsc -p tsconfig.build.json --outDir lib -w",
     "pretestbuild": "rm -rf test",
     "testbuild": "tsc -p tsconfig.test.json --outDir test",
     "testbuild:watch": "tsc -p tsconfig.test.json --outDir test -w",
