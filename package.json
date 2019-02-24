@@ -4,6 +4,9 @@
   "description": "Auth0 Authorization Extension API client library",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
+  "files": [
+    "lib"
+  ],
   "dependencies": {
     "@types/jsonwebtoken": "8.3.0",
     "@types/node-fetch": "2.1.4",
