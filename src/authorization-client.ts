@@ -46,6 +46,7 @@ export class AuthorizationClient {
 
   // Cache access token
   private _accessToken: string;
+  private _pendingGetAccessToken: Promise<void> | null = null;
 
   constructor(options: IAuthorizationClientOptions) {
     this._options = options;
@@ -200,14 +201,23 @@ export class AuthorizationClient {
   }
 
   // Return cached access token unless it does not exist or is expired.
-  private async _getAccessToken(): Promise<string> {
+  // If there is a pending request to get access token, wait for that
+  // request to finish before continuing.
+  protected async _getAccessToken(): Promise<string> {
+    if (this._pendingGetAccessToken) {
+      await this._pendingGetAccessToken;
+    }
     const _getAccessToken = async () => {
-      return await getAccessToken({
+      const promise = getAccessToken({
         audience: this._options.audience,
         clientId: this._options.clientId,
         clientSecret: this._options.clientSecret,
         domain: this._options.domain,
       });
+      this._pendingGetAccessToken = promise.then(() => {
+        this._pendingGetAccessToken = null;
+      });
+      return this._accessToken = await promise;
     };
     // Get new access token if it does not exist
     if (!this._accessToken) {
@@ -225,7 +235,7 @@ export class AuthorizationClient {
   }
 }
 
-interface IAuthorizationClientOptions {
+export interface IAuthorizationClientOptions {
   audience?: string; // optional override
   clientId: string;
   clientSecret: string;
