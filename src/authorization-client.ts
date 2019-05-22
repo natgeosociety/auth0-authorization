@@ -203,7 +203,7 @@ export class AuthorizationClient {
   private async _getAccessToken(): Promise<string> {
     const _getAccessToken = async () => {
       return await getAccessToken({
-        audience: this._options.audience || 'urn:auth0-authz-api',
+        audience: this._options.audience,
         clientId: this._options.clientId,
         clientSecret: this._options.clientSecret,
         domain: this._options.domain,

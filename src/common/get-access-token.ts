@@ -2,7 +2,7 @@ import fetch from 'node-fetch';
 import { HttpError } from './http-error';
 
 export interface IGetAccessTokenOptions {
-  audience: string;
+  audience?: string;
   clientId: string;
   clientSecret: string;
   domain: string;
@@ -21,7 +21,7 @@ interface IAuth0TokenResponse {
 export async function getAccessToken(options: IGetAccessTokenOptions): Promise<string> {
   const tokenUrl = `https://${options.domain}/oauth/token`;
   const payload = {
-    audience: options.audience,
+    audience: options.audience || 'urn:auth0-authz-api',
     client_id: options.clientId,
     client_secret: options.clientSecret,
     grant_type: 'client_credentials',
