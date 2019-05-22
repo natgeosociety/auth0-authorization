@@ -200,9 +200,9 @@ export class AuthorizationClient {
   }
 
   // Return cached access token unless it does not exist or is expired.
-  private async _getAccessToken(): Promise<string> {
+  protected async _getAccessToken(): Promise<string> {
     const _getAccessToken = async () => {
-      return await getAccessToken({
+      return this._accessToken = await getAccessToken({
         audience: this._options.audience,
         clientId: this._options.clientId,
         clientSecret: this._options.clientSecret,
@@ -225,7 +225,7 @@ export class AuthorizationClient {
   }
 }
 
-interface IAuthorizationClientOptions {
+export interface IAuthorizationClientOptions {
   audience?: string; // optional override
   clientId: string;
   clientSecret: string;
