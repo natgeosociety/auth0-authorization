@@ -17,8 +17,10 @@ pipeline {
 
     stage('Test') {
       steps {
-        sh "docker build . --target tester --tag test-${IMAGE_REF}"
-        sh "docker run test-${IMAGE_REF}"
+        withCredentials([file(credentialsId: '8d8b1ca4-4036-477c-b7e8-018f0b1a67dd', variable: 'env_file')]) {
+          sh "docker build . --target tester --tag ${IMAGE_REF}.test"
+          sh "docker run --env-file ${env_file} ${IMAGE_REF}.test"
+        }
       }
     }
 
