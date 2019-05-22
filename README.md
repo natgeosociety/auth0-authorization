@@ -43,29 +43,42 @@ let group: IAuth0AuthorizationApiGroup;
 
 
 
-## Tests
+## Testing
 
-### Run tests with mocks
+All tests run against a live Auth0 tenant instance.
 
-```bash
-npm test
-```
+### Configuration
 
-### Run tests without mocks
-
-First, set up Auth0 parameters
+First you need to set up a `.env` file containing the Auth0 configuration. Here is an example `.env` that includes
+all non-secret values (`cyrusbio-identity-lib` is an Auth0 tenant made specifically for testing this library):
 
 ```bash
 cat <<'EOF' > .env
-SKIP_MOCKS=true
-AUTH0_AUDIENCE=xxx
+AUTH0_DOMAIN=xxx
 AUTH0_CLIENT_ID=xxx
 AUTH0_CLIENT_SECRET=xxx
-AUTH0_DOMAIN=my-tenant.auth0.com
-AUTH0_EXTENSION_URL=https://my-tenant.us.webtask.io/xxx/api
+AUTH0_EXTENSION_URL=xxx
 EOF
 ```
 
+### Run all tests
+
 ```bash
 env $(cat .env | xargs) npm test
+```
+
+### Run individual test
+
+```bash
+npm run testbuild
+env $(cat .env | xargs) node_modules/.bin/ava test/[test-name].spec.js
+```
+
+### Logging in tests
+
+Logging in tests should use ava `t.log` instead of `console.log`.
+Those logs will appear only when running ava in verbose mode:
+
+```bash
+env $(cat .env | xargs) node_modules/.bin/ava test/[test-name].spec.js --verbose
 ```

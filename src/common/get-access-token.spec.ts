@@ -1,25 +1,14 @@
 
 import test from 'ava';
-import { getAccessToken } from './get-access-token';
-import { TestOptions } from '../options.spec';
-import { mockGetAccessToken } from './get-access-token.mock.spec';
+import { getAccessToken, IGetAccessTokenOptions } from './get-access-token';
+import { getEnvironmentVariable } from './get-environment-variable';
 
-export function getAccessTokenSpec(options: TestOptions) {
-  options.skipMocks ? testWithoutMocks(options) : testWithMocks(options);
-}
-
-function testWithMocks(options: TestOptions) {
-  test('getAccessToken should request an access token from Auth0', async (t) => {
-    const {mock, accessToken: mockedAccessToken} = mockGetAccessToken(options);
-    const accessToken = await getAccessToken(options.getAccessToken);
-    t.deepEqual(accessToken, mockedAccessToken);
-    mock.done();
-  })
-}
-
-function testWithoutMocks(options: TestOptions) {
-  test('getAccessToken should request an access token from Auth0', async (t) => {
-    const accessToken = await getAccessToken(options.getAccessToken);
-    t.is(typeof accessToken, 'string');
-  })
-}
+test('getAccessToken should request an access token from Auth0', async (t) => {
+  const config: IGetAccessTokenOptions = {
+    domain: getEnvironmentVariable('AUTH0_DOMAIN'),
+    clientId: getEnvironmentVariable('AUTH0_CLIENT_ID'),
+    clientSecret: getEnvironmentVariable('AUTH0_CLIENT_SECRET'),
+  };
+  const accessToken = await getAccessToken(config);
+  t.is(typeof accessToken, 'string');
+})
