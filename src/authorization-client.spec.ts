@@ -2,24 +2,25 @@
 import test from 'ava';
 import { AuthorizationClient as AuthorizationClientClass, IAuthorizationClientOptions } from './authorization-client';
 import { getEnvironmentVariable } from './common/get-environment-variable';
-
 const proxyquire = require('proxyquire').noPreserveCache();
 
 test('AuthorizationClient.getAccessToken should cache access token', async (t) => {
   const { authorizationClient, counter } = setupTest();
   await authorizationClient.getAccessToken(); // this call should get fresh token
   await authorizationClient.getAccessToken(); // this call should reuse cached token
+  await authorizationClient.getAccessToken(); // this call should reuse cached token
   t.is(counter.count, 1);
 });
 
 test('AuthorizationClient.getAccessToken should wait for pending calls to finish', async (t) => {
   const { authorizationClient, counter } = setupTest();
-  // Although these two requests are initiated at the same time,
-  // they should execute one at a time so that the second one
-  // hits the cache.
+  // Although these requests are initiated at the same time,
+  // they should execute one at a time so that all calls hit
+  // the cache after the first call.
   const promise1 = authorizationClient.getAccessToken();
   const promise2 = authorizationClient.getAccessToken();
-  await Promise.all([promise1, promise2]);
+  const promise3 = authorizationClient.getAccessToken();
+  await Promise.all([promise1, promise2, promise3]);
   t.is(counter.count, 1);
 });
 
