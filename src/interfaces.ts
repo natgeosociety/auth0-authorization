@@ -2,6 +2,7 @@ export interface IAuth0AuthorizationApiGroup {
   _id: string; // 'xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx'
   name: string;
   description: string;
+  members: string[];
 }
 
 export interface IAuth0AuthorizationApiRole {
