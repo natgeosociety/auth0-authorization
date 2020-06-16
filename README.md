@@ -5,7 +5,7 @@ Auth0 Authorization Extension API client library
 ## Installation
 
 ```bash
-  npm install @cyrusbio/auth0-authorization
+  npm install @natgeosociety/auth0-authorization
 ```
 
 ## AuthorizationClient
@@ -13,7 +13,7 @@ Auth0 Authorization Extension API client library
 Use this client to access the [Auth0 Authorization Extension API](https://auth0.com/docs/api/authorization-extension).
 
 ```ts
-import { AuthorizationClient } from '@cyrusbio/auth0-authorization';
+import { AuthorizationClient } from '@natgeosociety/auth0-authorization';
 
 const authorization = new AuthorizationClient({
   clientId: `${CLIENT_ID}`,
@@ -36,7 +36,7 @@ const groups = await authorization.getGroups();
 [TypeScript](https://www.typescriptlang.org) types are included.
 
 ```ts
-import { IAuth0AuthorizationApiGroup } from '@cyrusbio/auth0-authorization';
+import { IAuth0AuthorizationApiGroup } from '@natgeosociety/auth0-authorization';
 
 let group: IAuth0AuthorizationApiGroup;
 ```
@@ -50,7 +50,7 @@ All tests run against a live Auth0 tenant instance.
 ### Configuration
 
 First you need to set up a `.env` file containing the Auth0 configuration. Here is an example `.env` that includes
-all non-secret values (`cyrusbio-identity-lib` is an Auth0 tenant made specifically for testing this library):
+all non-secret values:
 
 ```bash
 cat <<'EOF' > .env
